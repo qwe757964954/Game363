@@ -23,13 +23,14 @@ def check_file(path: Path, description: str, logger):
     return path
 
 
-def run_subprocess(cmd: list, logger, cwd: Path = None):
-    logger.info(f"执行命令: {' '.join(str(c) for c in cmd)}")
+def run_subprocess(command: str, logger, cwd: Path = None):
+    logger.info(f"执行命令: {command}")
     process = subprocess.Popen(
-        cmd,
+        command,
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
-        cwd=cwd
+        cwd=cwd,
+        shell=True  # ⭐注意要用 shell=True，因为 command 是字符串
     )
     assert process.stdout
     for raw_line in iter(process.stdout.readline, b''):
@@ -39,7 +40,7 @@ def run_subprocess(cmd: list, logger, cwd: Path = None):
             line = raw_line.decode('gbk', errors='replace').rstrip()
         logger.info(line)
     ret = process.wait()
-    
+
     if ret == 0:
         logger.info("子进程正常完成 ✅")
     elif ret == 36:
@@ -52,15 +53,17 @@ def run_subprocess(cmd: list, logger, cwd: Path = None):
 
 
 
+
 def build_with_cocos_creator(exec_path: Path, project_dir: Path, config_file: Path, logger):
     logger.info("开始使用 Cocos Creator 构建...")
-    cmd = [
-        str(exec_path),
-        "--project", str(project_dir),
-        "--build", json.dumps({"platform": "android", "debug": False}),
-        "--configPath", str(config_file)
-    ]
-    run_subprocess(cmd, logger)
+
+    # 这里 params 用 json string 方式，兼容更多参数
+    params = f"configPath=./buildConfig_android.json"
+
+    # 拼接成一条完整的命令
+    command = f'"{str(exec_path)}" --project "{str(project_dir)}" --build {params}'
+
+    run_subprocess(command, logger)
     logger.info("Cocos Creator 构建完成 ✅")
 
 
