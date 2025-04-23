@@ -1,0 +1,73 @@
+{
+  "name": "gameTest",
+  "platform": "android",
+  "buildPath": "project://build",
+  "debug": false,
+  "md5Cache": true,
+  "skipCompressTexture": false,
+  "sourceMaps": false,
+  "polyfills": {
+    "asyncFunctions": false
+  },
+  "experimentalEraseModules": false,
+  "useBuiltinServer": false,
+  "mainBundleIsRemote": false,
+  "mainBundleCompressionType": "merge_dep",
+  "replaceSplashScreen": false,
+  "startScene": "01ad0260-a9b9-4510-b99b-fad2df092895",
+  "outputName": "android",
+  "scenes": [
+    {
+      "url": "db://assets/main.scene",
+      "uuid": "01ad0260-a9b9-4510-b99b-fad2df092895",
+      "inBundle": false
+    }
+  ],
+  "android": [],
+  "packages": {
+    "android": {
+      "packageName": "abc.game.test.com",
+      "orientation": {
+        "portrait": false,
+        "upsideDown": false,
+        "landscapeRight": true,
+        "landscapeLeft": true
+      },
+      "apiLevel": 31,
+      "appABIs": [
+        "arm64-v8a",
+        "armeabi-v7a"
+      ],
+      "useDebugKeystore": true,
+      "keystorePath": "",
+      "keystorePassword": "",
+      "keystoreAlias": "",
+      "keystoreAliasPassword": "",
+      "appBundle": false,
+      "androidInstant": false,
+      "remoteUrl": "",
+      "sdkPath": "",
+      "ndkPath": "",
+      "renderBackEnd": {
+        "vulkan": false,
+        "gles3": true,
+        "gles2": true
+      },
+      "swappy": false,
+      "__version__": "1.0.1"
+    },
+    "cocos-service": {
+      "configID": "55783d",
+      "services": [],
+      "__version__": "3.0.5"
+    },
+    "native": {
+      "encrypted": false,
+      "xxteaKey": "eb7G+hUcJBzZwnMP",
+      "compressZip": false,
+      "JobSystem": "none",
+      "__version__": "1.0.2"
+    }
+  },
+  "__version__": "1.3.3"
+}
